@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRUD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Administracion</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <h3>Agregar nueva Gift Card</h3>
+                <form>
+
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label>Gift</label>
+                            <input type="text" class="form-control" id="gift" required>
+                        </div>
+                        <div class="col">
+                            <label>Tipo</label>
+                            <select id="tipo" class="form-control">
+                                <option value="Suscripcion">Suscripcion</option>
+                                <option value="Compra">Compra</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label>Tiempo</label>
+                            <select id="tiempo" class="form-control">
+                                <option value="1 Mes">1 Mes</option>
+                                <option value="2 Meses">2 Meses</option>
+                                <option value="5 Meses">5 Meses</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label>Precio</label>
+                            <input type="number" class="form-control" id="precio" required>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <input type="text" class="form-control" required placeholder="URL de la imagen">
+                        </div>
+                    </div>
+                    <div class="mt-3 d-flex justify-content-end">
+                        <button class="btn btn-primary">Guardar</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2">
+            <h3 class="mt-3">Tabla de contenido</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Gift</th>
+                        <th>Tipo</th>
+                        <th>Tiempo</th>
+                        <th>Precio</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="./js/app.js" type="module" ></script>
+</body>
+</html>
