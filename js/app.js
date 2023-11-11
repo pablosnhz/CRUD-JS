@@ -5,8 +5,9 @@ const cuerpoTabla = document.querySelector('#cuerpo-tabla');
 
 const cargarTabla = () => {
     
-    datos.map((item)=> {
+    cuerpoTabla.innerHTML = ''; // limpia el form para nuevos datos reset()
 
+    datos.map((item)=> {
         const fila = document.createElement('tr')
 
         const celdas = `<th>${item.gift}</th>
@@ -28,4 +29,22 @@ const cargarTabla = () => {
     })
 };
 
+const agregarGift = (event) => {
+    event.preventDefault();
+
+    let id = datos.at(-1).id + 1; // si solo tengo 3 elementos en la clase gif con este habria un 4,5,6...
+    let gift = document.querySelector('#gift').value;
+    let tipo = document.querySelector('#tipo').value;
+    let tiempo = document.querySelector('#tiempo').value;
+    let precio = document.querySelector('#precio').value;
+    let imagen = document.querySelector('#imagen').value;
+
+    datos.push(new Gift(id, gift, tipo, tiempo, precio, imagen));
+    document.querySelector("#formGift").reset(); // limpia cambios luego de subir los datos
+    cargarTabla();
+}
+
 cargarTabla()
+
+document.querySelector('#formGift').addEventListener('submit', agregarGift);
+
