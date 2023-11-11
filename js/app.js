@@ -18,7 +18,7 @@ const cargarTabla = () => {
                             <div class="d-flex gap-2">
                                 <button class="btn btn-outline-warning">
                                 <i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                <button class="btn btn-outline-danger">
+                                <button class="btn btn-outline-danger" onclick="borrarGift(${item.id})">
                                 <i class="fa fa-times" aria-hidden="true"></i></button>
                              </div>
                         </td>`;
@@ -42,6 +42,19 @@ const agregarGift = (event) => {
     datos.push(new Gift(id, gift, tipo, tiempo, precio, imagen));
     document.querySelector("#formGift").reset(); // limpia cambios luego de subir los datos
     cargarTabla();
+};
+
+window.borrarGift = (id) => {
+
+    let index = datos.findIndex((item)=> item.id == id)
+
+    let validar = confirm(`Esta seguro/a que quiere eliminar la gift card ${datos[index].gift}?`)
+
+    if(validar){
+        datos.splice(index, 1)
+        cargarTabla()
+    }
+
 }
 
 cargarTabla()
