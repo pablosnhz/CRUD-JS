@@ -2,6 +2,40 @@ import datos from '../data/data.json' assert {type: 'json'};
 import { Gift } from './clases.js';
 
 const cuerpoTabla = document.querySelector('#cuerpo-tabla');
+const myModal = new bootstrap.Modal(document.getElementById('modalGift'))
+
+let idGitUpdate = null
+
+window.mostrarModal = (id) => {
+    console.log(id);
+    idGitUpdate = id;
+    let index = datos.findIndex((item) => item.id == idGitUpdate);
+
+    document.querySelector('#giftModal').value = datos[index].gift;
+    document.querySelector('#tipoModal').value = datos[index].tipo;
+    document.querySelector('#tiempoModal').value = datos[index].tiempo;
+    document.querySelector('#precioModal').value = datos[index].precio;
+    document.querySelector('#imagenModal').value = datos[index].imagen;
+
+    myModal.show()
+}
+
+const giftUpdate = (e) => {
+    e.preventDefault()
+
+    let index = datos.findIndex((item) => item.id == idGitUpdate);
+
+    datos[index].gift = document.querySelector('#giftModal').value;
+    datos[index].tipo = document.querySelector('#tipoModal').value;
+    datos[index].tiempo = document.querySelector('#tiempoModal').value;
+    datos[index].precio = document.querySelector('#precioModal').value;
+    datos[index].imagen = document.querySelector('#imagenModal').value;
+
+
+    cargarTabla()
+
+    myModal.hide();
+}
 
 const cargarTabla = () => {
     
@@ -16,7 +50,7 @@ const cargarTabla = () => {
                         <td>$${item.precio}</td>
                         <td>
                             <div class="d-flex gap-2">
-                                <button class="btn btn-outline-warning">
+                                <button class="btn btn-outline-warning" onclick="mostrarModal(${item.id})">
                                 <i class="fa fa-pencil" aria-hidden="true"></i></button>
                                 <button class="btn btn-outline-danger" onclick="borrarGift(${item.id})">
                                 <i class="fa fa-times" aria-hidden="true"></i></button>
@@ -60,4 +94,4 @@ window.borrarGift = (id) => {
 cargarTabla()
 
 document.querySelector('#formGift').addEventListener('submit', agregarGift);
-
+document.querySelector('#formModal').addEventListener('submit', giftUpdate);
